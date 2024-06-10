@@ -1,0 +1,27 @@
+FROM node:20.13.1-alpine
+
+# Set the working directory
+WORKDIR  /app
+
+# Copy the package.json and package-lock.json
+COPY package*.json ./
+COPY package-lock.json ./
+
+# Install the dependencies
+RUN npm install
+
+# Copy the rest of the files
+COPY . .
+
+
+# build the app
+RUN npm run build
+
+
+EXPOSE 3000
+
+# RUN npx prisma migrate diff --from-empty --to-schema-datamodel prisma/schema.prisma --script > prisma/migrations/0_init/migration.sql
+# RUN npx prisma migrate resolve --applied 0_init
+# RUN npx prisma migrate deploy
+# run prod version
+CMD ["npm", "start"]
