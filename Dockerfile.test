@@ -13,6 +13,11 @@ RUN npm install
 # Copy the rest of the files
 COPY . .
 
+WORKDIR /app
+
+# RUN npm install -D tsx @snaplet/seed
+# RUN npx prisma db seed
+
 # build the app
 RUN npm run build
 
@@ -22,4 +27,4 @@ EXPOSE 3000
 # RUN npx prisma migrate resolve --applied 0_init
 # RUN npx prisma migrate deploy
 # run prod version
-CMD ["npm", "start"]
+CMD npx prisma migrate deploy && npx prisma db seed && npm start

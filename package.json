@@ -2,12 +2,16 @@
   "name": "docker-prisma",
   "version": "0.1.0",
   "private": true,
+  "prisma": {
+    "seed": "tsx prisma/seed/seed.ts"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "npx prisma migrate deploy && next start",
     "lint": "next lint",
-    "test": "docker compose -f docker-compose.test.yml up -d --build"
+    "test": "docker compose -f docker-compose.test.yml up -d --build",
+    "migrate": "prisma migrate dev"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
@@ -25,9 +29,7 @@
     "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.15.7",
     "typescript": "^5"
-  },
-  "@snaplet/seed": {
-    "config": "prisma/seed/seed.config.ts"
   }
 }
