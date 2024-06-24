@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "npx prisma migrate deploy && next start",
     "lint": "next lint",
-    "testing-environment": "docker compose -f docker-compose.test.yml up -d --build"
+    "test": "docker compose -f docker-compose.test.yml up -d --build"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
@@ -16,6 +16,8 @@
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@snaplet/copycat": "^5.0.0",
+    "@snaplet/seed": "^0.97.20",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -24,5 +26,8 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+  },
+  "@snaplet/seed": {
+    "config": "prisma/seed/seed.config.ts"
   }
 }
